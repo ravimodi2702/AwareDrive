@@ -1,0 +1,168 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-header {
+    padding: 15px 20px;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.metric-item:last-child {
+    border-bottom: none;
+}
+
+.metric-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.metric-value {
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.alert-overlay {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+}
+
+.alert-overlay .alert {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#cameraFeed {
+    min-height: 480px;
+    background-color: #eee;
+    object-fit: contain;
+}
+
+#coachingAdvice {
+    min-height: 120px;
+}
+
+.btn {
+    font-weight: 500;
+    padding: 8px 24px;
+}
+
+.danger-text {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.warning-text {
+    color: #ffc107;
+}
+
+.success-text {
+    color: #28a745;
+}
+
+/* Smooth transition for showing/hiding panels */
+#metricsContainer, #initialMessage {
+    transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+#metricsContainer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#metricsContainer[style*="display: none"] {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+#initialMessage {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#initialMessage[style*="display: none"] {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+/* Special styling for sleepy count */
+#sleepyCount.danger-text {
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+/* Make events more distinctive */
+.list-group-item-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    border-left: 4px solid #dc3545;
+}
+
+.list-group-item-warning {
+    background-color: rgba(255, 193, 7, 0.2);
+    border-left: 4px solid #ffc107;
+}
+
+.list-group-item-info {
+    background-color: rgba(23, 162, 184, 0.2);
+    border-left: 4px solid #17a2b8;
+}

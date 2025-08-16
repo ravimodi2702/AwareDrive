@@ -1,0 +1,23 @@
+.placeholder-container {
+    width: 640px;
+    height: 480px;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.placeholder-text {
+    color: #888;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px;
+}
+
+.placeholder-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #aaa;
+}

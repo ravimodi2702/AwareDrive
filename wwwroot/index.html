@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Fatigue Monitoring System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/site.css">
+    <!-- Add SignalR client library from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@7.0.10/dist/browser/signalr.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="row mb-4">
+            <div class="col">
+                <h1 class="text-center">Driver Fatigue Monitoring System</h1>
+            </div>
+        </header>
+
+        <div class="row mb-4">
+            <div class="col text-center">
+                <button id="btnStart" class="btn btn-primary me-3">Start Monitoring</button>
+                <button id="btnStop" class="btn btn-danger" disabled>Stop Monitoring</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Video Feed Column -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title">Camera Feed</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="position-relative">
+                            <img id="cameraFeed" src="placeholder-camera.png" class="img-fluid w-100" alt="Camera Feed">
+                            <div id="noFaceOverlay" class="alert-overlay d-none">
+                                <div class="alert alert-danger">Face Not Detected!</div>
+                            </div>
+                            <div id="sleepyOverlay" class="alert-overlay d-none">
+                                <div class="alert alert-warning">Sleepiness Detected!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Metrics Column - Hidden by default -->
+            <div class="col-md-4" id="metricsContainer" style="display: none;">
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white ">
+                        <h3 class="card-title">Driver Metrics</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="metric-item">
+                            <span class="metric-label">Sleepiness Count:</span>
+                            <span id="sleepyCount" class="metric-value">0</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Yawn Count:</span>
+                            <span id="yawnCount" class="metric-value">0</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Calibration Status:</span>
+                            <span id="calibrationStatus" class="metric-value">Not Calibrated</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Face Detected:</span>
+                            <span id="faceStatus" class="metric-value">Yes</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-label">Head Position:</span>
+                            <span id="headStatus" class="metric-value">Centered</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title">AI Coaching</h3>
+                    </div>
+                    <div class="card-body">
+                        <p id="coachingAdvice" class="coaching-text">No advice at the moment...</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title">Recent Events</h3>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul id="eventsList" class="list-group list-group-flush">
+                            <!-- Events will be added here dynamically -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Initial message shown when metrics are hidden -->
+            <div class="col-md-4" id="initialMessage">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h3 class="card-title">Welcome</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <img src="img/driver-icon.png" alt="Driver Icon" class="img-fluid mb-3" style="max-width: 100px;" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%2010%2010%22%3E%3Ccircle%20cx%3D%225%22%20cy%3D%223.5%22%20r%3D%222.5%22%20fill%3D%22%23555%22%2F%3E%3Cpath%20d%3D%22M10%2C10.5%20C10%2C7.5%207.75%2C5.5%205%2C5.5%20C2.25%2C5.5%200%2C7.5%200%2C10.5%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E'">
+                        </div>
+                        <p class="lead text-center">Please click "Start Monitoring" to begin driver fatigue detection.</p>
+                        <hr>
+                        <div class="alert alert-info">
+                            <p><strong>The system will monitor:</strong></p>
+                            <ul>
+                                <li>Eye closure duration</li>
+                                <li>Yawn detection</li>
+                                <li>Head position</li>
+                                <li>Face presence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

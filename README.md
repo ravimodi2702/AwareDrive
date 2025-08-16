@@ -56,3 +56,17 @@ A real-time driver fatigue monitoring system that uses computer vision and AI to
 ## License
 
 MIT License"# AwareDrive" 
+
+## Configuration
+
+ "Azure": {
+    "FaceApi": {
+      "Endpoint": "**********",
+      "ApiKey": "************"
+    },
+    "OpenAI": {
+      "Endpoint": "**********",
+      "ApiKey": "**********",
+      "DeploymentName": "********"
+    }
+  }
